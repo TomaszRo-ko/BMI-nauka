@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+<title>Kalkulator BMI</title>
+</head>
+<body>
+<h1>Kalkulator BMI</h1>
+
+<div class="form-group">
+    <form name="formularz">
+    Podaj swoją wagę w kilogramach <input type="text" name="waga" class="form-control" required><br />
+</div>
+
+<div class="form-group">
+Podaj swój wzrost w centymetrach <input type="text" name="wzrost" class="form-control" required><br />
+</div>
+<input type="button" value="Oblicz BMI" onClick="bmiCalculator()" class="btn btn-primary"><br />
+
+
+<p>Twoje BMI wynosi: </p><input type="text" name="bmi" class="form-control"><br />
+<p>Interpretacja wyniku</p>
+<input type="text" name="opis" class="form-control"><br />
+<input type="reset" value="Reset" class="btn btn-warning">
+</form>
+<script>
+function bmiCalculator() {
+var waga = document.formularz.waga.value;
+var wzrost = document.formularz.wzrost.value;
+if ( isNaN(waga || wzrost)){
+    alert("Akceptowane są tylko wartości liczbowe")
+}
+if(waga > 0 && wzrost > 0){ 
+var wynikBMI = waga/(wzrost/100*wzrost/100);
+document.formularz.bmi.value = wynikBMI;
+}
+
+else{
+alert("Uzupełnij poprawnie dane");
+}
+
+if(wynikBMI < 18.5){
+document.formularz.opis.value = "Masz niedowagę - zalecana jest zmiana żywienia na dietę pełnowartościową .";
+}
+if(wynikBMI > 18.5 && wynikBMI < 25){
+document.formularz.opis.value = "Waga prawidłowa - Oznacza to,że styl źycia jest zdrowy i przyjazny dla organizmu .";
+}
+if(wynikBMI > 25.01 && wynikBMI < 29.99){
+document.formularz.opis.value = "Masz nadwagę - Wskazana jest w tym przypadku zmiana codziennej diety.";
+}
+if(wynikBMI > 30 && wynikBMI < 34.99){
+document.formularz.opis.value = "Otyłość pierwszego stopnia - Skontaktuj się  z lekarzem. Pozwoli to na wcześniejsze wykrycie chorób cywilizacyjnych m.in cukrzycy, miażdżycy czy raka jelita grubego. Kontroluj swoją wagę !";
+}
+if(wynikBMI > 35){
+document.formularz.opis.value = "Otyłość drugiego stopnia  - Skontaktuj się  z lekarzem. Pozwoli to na wcześniejsze wykrycie chorób cywilizacyjnych m.in cukrzycy, miażdżycy czy raka jelita grubego. Kontroluj swoją wagę ! ";
+}
+}
+
+</script>
+</body>
+</html>
